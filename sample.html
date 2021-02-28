@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Encoding and viewport -->
+	<meta charset="UTF-8" />
+	<meta property="og:locale" content="en-us" />
+	<meta property="og:type" content="website" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Title -->
+	<title>Progress Ring Widget by Sivak</title>
+
+	<!-- Simple styles -->
+	<link href="./sample.css" rel="stylesheet" />
+
+	<!-- JS -->
+	<script src="./widget-progress-ring.js"></script>
+	<script src="./sample.js" defer></script>
+</head>
+
+<body>
+	<main>
+		<section>
+			<h1>SVG Progress Ring Widget</h2>
+				<p>An SVG is simply generated within the target tag using JavaScript. Technically, no CSS is required to draw the ring itself.</p>
+		</section>
+
+		<section>
+			<h2>Usage</h2>
+			<div class="detail-box">
+				<p><strong>Create your target tag</strong></p>
+				<ul>
+					<li>Set an ID on a tag (usually a div) on where you want the ring to appear. You'll also likely want
+						to set a width and height on this tag. If not, the ring will take up the full width of the tag.
+					</li>
+				</ul>
+				<p><strong>Set arguments</strong></p>
+				<ul>
+					<li>Create an object in JS with arguments (see Arguments section below for reference)</li>
+				</ul>
+				<p><strong>Method 1 - Create as static object</strong></p>
+				<ul>
+					<li>If you don't plan on manipulating the ring further, simply call the function
+						<b>createProgressRing(args);</b> where args are the desired arguments to pass to it.</li>
+				</ul>
+				<p><strong>Method 2 - Create as class object</strong></p>
+				<ul>
+					<li>If you do want manipulate the ring, you can set a variable and call the method 
+						<b>new progressRing(args);</b> where args are the desired arguments to pass to it.</li>
+				</ul>
+			</div>
+
+			<h2>Arguments</h2>
+			<div class="detail-box">
+				<p><strong>Required Arguments</strong></p>
+				<ul>
+					<li>target (string): The ID of the tag you want to put a ring inside of</li>
+					<li>progressPercent (float): What percent to show? (needs to be represented as a number from 0 to 1)
+					</li>
+				</ul>
+				<p><strong>Optional Arguments</strong></p>
+				<ul>
+					<li>radius (float): Size of the radius (defaults to 100)</li>
+					<li>setParentWidth (bool): If set to true, will set the width of the containing tag to that of the radius. If false, the SVG will take up the entire width. (defaults to false)</li>
+					<li>progressWidth (float): Width of the progress bar (defaults to 25)</li>
+					<li>progressBorderWidth (float): Border width of the progress bar (set to 0 for none; defaults to 1)<br>
+						<span>※progressWidth and progressBorderWidth <span style="font-weight:bold;color:Crimson;">cannot be combined to a total greater or equal to the radius!</span></span>
+					</li>
+
+					<li>progressBGcolor (string): Color of the area behind the progress bar</li>
+					<li>progressColor (string): Color of the progress bar</li>
+					<li>progressBorderColor (string): Color of the border of the progress bar (set to "none" for none)</li>
+					<li>centerColor (string): Color of the center (set to "none" for none)</li>
+					<li>thresholds (array of objects): Optionally have the progress color change upon dropping below certain levels. Keys are:<br>
+						level (float): The percent level to check. (number between 0-1)<br>
+						color (string): What color to change to upon dropping below this level</li>
+				</ul>
+			</div>
+			<h2>Methods</h2>
+			<div class="detail-box">
+				<ul>
+					<li>setProgress(float): Set the percent of progress</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="result-layout">
+			<div>
+				<h2>Result using method 1</h2>
+				<div id="progress-ring1"></div>
+				<p style="margin-top:2rem;">This would mainly be used if you just want to show something that doesn't need to change</p>
+			</div>
+			<div>
+				<h2>Result using method 2 and thresholds</h2>
+				<div id="progress-ring2"></div>
+				
+				<p style="margin-top:2rem;margin-bottom:1rem;">With the variable set upon defining this ring, you can change the progress using the buttons below.</p>
+				<nav>
+					<button onclick="ringObj.setProgress(0.25);" type="button">Set to 25%</button>
+					<button onclick="ringObj.setProgress(0.5);" type="button">Set to 50%</button>
+					<button onclick="ringObj.setProgress(0.75);" type="button">Set to 75%</button>
+				</nav>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<p>Created by <a href="https://github.com/SivakGames/" rel="noopener" target="_blank">Sivak Games</a></p>
+		<p>Feel free to use in your projects!</p>
+	</footer>
+</body>
+
+</html>
